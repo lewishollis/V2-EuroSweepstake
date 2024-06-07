@@ -1,23 +1,32 @@
+# app/controllers/groups_controller.rb
 class GroupsController < ApplicationController
+  def index
+    @groups = Group.all
+  end
+
   def show
     @group = Group.find(params[:id])
-    # Logic to show details of a specific group
   end
 
   def update
     @group = Group.find(params[:id])
-    # Logic to update a group
+    if @group.update(group_params)
+      redirect_to @group
+    else
+      render :edit
+    end
   end
 
   def calculate_score
     @group = Group.find(params[:id])
-    team_scores = @group.teams.sum(:points)
-    @group_score = team_scores * @group.multiplier
+    @group.calculate_score
+    @group.save!
+    redirect_to @group
   end
 
+  private
 
-  def index
-    @groups = Group.all
-    # Logic to display a list of groups
+  def group_params
+    params.require(:group).permit(:name, :multiplier)
   end
 end

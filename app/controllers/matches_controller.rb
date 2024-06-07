@@ -31,6 +31,7 @@ class MatchesController < ApplicationController
               accessible_event_summary: event['accessibleEventSummary']
             )
 
+            assign_points(match)
             match.save!
             @matches << match
           end
@@ -39,5 +40,34 @@ class MatchesController < ApplicationController
     else
       @error_message = "Failed to fetch match data: #{response.code} - #{response.message}"
     end
+  end
+
+  private
+
+  def assign_points(match)
+    puts "Assigning points for match: #{match.inspect}"
+
+    if match.winner == 'home'
+      match.home_points = 3
+      match.away_points = 0
+      puts "Home team wins. Home points: #{match.home_points}, Away points: #{match.away_points}"
+    elsif match.winner == 'away'
+      match.home_points = 0
+      match.away_points = 3
+      puts "Away team wins. Home points: #{match.home_points}, Away points: #{match.away_points}"
+    else
+      match.home_points = 1
+      match.away_points = 1
+      puts "Draw. Home points: #{match.home_points}, Away points: #{match.away_points}"
+    end
+
+    # Update team points
+    update_team_points(match.home_team, match.home_points)
+    update_team_points(match.away_team, match.away_points)
+  end
+
+  def update_team_points(team, points)
+    team.points = (team.points || 0) + points
+    team.save!
   end
 end

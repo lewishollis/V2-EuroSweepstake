@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_07_155437) do
   create_table "groups", force: :cascade do |t|
     t.bigint "friend_id"
     t.string "name"
-    t.float "multiplier"
+    t.float "multiplier", default: 1.0
     t.float "score", default: 0.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -80,11 +80,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_07_155437) do
   end
 
   create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.integer "points", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "#<ActiveRecord::ConnectionAdapters::PostgreSQL::TableDefinition"
-    t.integer "points"
   end
 
   add_foreign_key "friend_group_teams", "friends_groups"
