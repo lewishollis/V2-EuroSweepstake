@@ -1,0 +1,38 @@
+<h1>Matches</h1>
+
+<% if @matches.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Home Score</th>
+        <th>Away Score</th>
+        <th>Winner</th>
+        <th>Home Points</th>
+        <th>Away Points</th>
+        <th>Start Time</th>
+        <th>Status</th>
+        <th>Accessible Event Summary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @matches.each do |match| %>
+        <tr>
+          <td><%= match.home_team.name %></td>
+          <td><%= match.away_team.name %></td>
+          <td><%= match.home_score %></td>
+          <td><%= match.away_score %></td>
+          <td><%= match.winner %></td>
+          <td><%= match.home_points %></td>
+          <td><%= match.away_points %></td>
+          <td><%= match.start_time %></td>
+          <td><%= match.status %></td>
+          <td><%= match.accessible_event_summary %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No matches available.</p>
+<% end %>
