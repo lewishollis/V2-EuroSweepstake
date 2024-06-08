@@ -1,3 +1,5 @@
+# db/seeds.rb
+
 # Delete all records to ensure a clean slate
 puts "Deleting all records..."
 
@@ -14,25 +16,35 @@ Match.destroy_all
 
 puts "All records deleted."
 
-# Create friends and associate them with groups
-friend1 = Friend.create!(name: "Lewis")
-friend2 = Friend.create!(name: "Claire")
+# Create groups
+groups = []
+(1..12).each do |i|
+  groups << Group.create!(name: "Group #{i}", multiplier: rand(1.0..3.0))
+end
 
-# Create groups first
-group1 = Group.create!(name: "Group A", multiplier: 3, friend: friend1)
-group2 = Group.create!(name: "Group B", multiplier: 2, friend: friend2)
+# Create friends
+friend_names = [
+  "Lewis", "Claire", "Craig", "Emma", "Sam", "Ella",
+  "Richard", "Nhien", "Matt", "Jamie", "Alex", "Taylor"
+]
 
+friends = friend_names.map { |name| Friend.create!(name: name) }
+
+# Assign friends to groups
+groups.each_with_index do |group, index|
+  group.update!(friend: friends[index])
+end
 
 # Create teams
-team1 = Team.create!(name: "Italy")
-team2 = Team.create!(name: "Germany")
-team3 = Team.create!(name: "France")
-team4 = Team.create!(name: "Spain")
+team_names = ["Italy", "Germany", "France", "Spain", "Portugal", "Netherlands",
+              "Belgium", "Denmark", "Sweden", "England", "Croatia", "Switzerland"]
+
+teams = team_names.map { |name| Team.create!(name: name) }
 
 # Assign teams to groups
-group1.teams << team1
-group1.teams << team2
-group2.teams << team3
-group2.teams << team4
+groups.each_with_index do |group, index|
+  group.teams << teams[index % teams.length]
+  group.teams << teams[(index + 1) % teams.length]
+end
 
 puts "Seed data has been successfully created."

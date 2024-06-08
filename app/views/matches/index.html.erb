@@ -1,6 +1,9 @@
+<!-- app/views/matches/index.html.erb -->
 <h1>Matches</h1>
 
-<% if @matches.present? %>
+<% if @error_message %>
+  <p><%= @error_message %></p>
+<% else %>
   <table>
     <thead>
       <tr>
@@ -8,12 +11,9 @@
         <th>Away Team</th>
         <th>Home Score</th>
         <th>Away Score</th>
-        <th>Winner</th>
-        <th>Home Points</th>
-        <th>Away Points</th>
         <th>Start Time</th>
         <th>Status</th>
-        <th>Accessible Event Summary</th>
+        <th>Winner</th>
       </tr>
     </thead>
     <tbody>
@@ -23,16 +23,12 @@
           <td><%= match.away_team.name %></td>
           <td><%= match.home_score %></td>
           <td><%= match.away_score %></td>
-          <td><%= match.winner %></td>
-          <td><%= match.home_points %></td>
-          <td><%= match.away_points %></td>
           <td><%= match.start_time %></td>
           <td><%= match.status %></td>
-          <td><%= match.accessible_event_summary %></td>
+          <td><%= match.winner %></td>
+          <td><%= match.accessible_event_summary%>
         </tr>
       <% end %>
     </tbody>
   </table>
-<% else %>
-  <p>No matches available.</p>
 <% end %>

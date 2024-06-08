@@ -20,19 +20,25 @@ class MatchesController < ApplicationController
             home_team = Team.find_or_create_by(name: event['home']['fullName'])
             away_team = Team.find_or_create_by(name: event['away']['fullName'])
 
-            match = Match.new(
+            match = Match.find_or_initialize_by(
               home_team: home_team,
               away_team: away_team,
-              home_score: event['home']['score'].to_i,
-              away_score: event['away']['score'].to_i,
-              start_time: event['date']['iso'],
-              status: event['status'],
-              winner: event['winner'],
-              accessible_event_summary: event['accessibleEventSummary']
+              start_time: event['date']['iso']
             )
 
-            assign_points(match)
-            match.save!
+            if match.new_record?
+              match.assign_attributes(
+                home_score: event['home']['score'].to_i,
+                away_score: event['away']['score'].to_i,
+                status: event['status'],
+                winner: event['winner'],
+                accessible_event_summary: event['accessibleEventSummary']
+              )
+
+              assign_points(match)
+              match.save!
+            end
+
             @matches << match
           end
         end
