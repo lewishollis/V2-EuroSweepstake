@@ -1,0 +1,67 @@
+/* app/assets/stylesheets/matches.scss */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.matches-container {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  font-size: 1.2em;
+  margin: 20px 0;
+}
+
+.matches-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 0.9em;
+}
+
+.matches-table th,
+.matches-table td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.matches-table th {
+  background-color: #f2f2f2;
+}
+
+.matches-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.matches-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.matches-table td {
+  color: #333;
+}
+
+.matches-table th {
+  color: #555;
+  font-weight: bold;
+  text-transform: uppercase;
+}
