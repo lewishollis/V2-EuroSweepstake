@@ -1,32 +1,8 @@
-# app/controllers/groups_controller.rb
-class GroupsController < ApplicationController
-  def index
-    @groups = Group.all
-  end
-
-  def show
-    @group = Group.find(params[:id])
-  end
-
-  def update
-    @group = Group.find(params[:id])
-    if @group.update(group_params)
-      redirect_to @group
-    else
-      render :edit
-    end
-  end
+class Group < ApplicationRecord
+  has_and_belongs_to_many :teams
 
   def calculate_score
-    @group = Group.find(params[:id])
-    @group.calculate_score
-    @group.save!
-    redirect_to @group
-  end
-
-  private
-
-  def group_params
-    params.require(:group).permit(:name, :multiplier)
+    total_team_points = teams.sum(:points)
+    self.score = total_team_points * multiplier
   end
 end

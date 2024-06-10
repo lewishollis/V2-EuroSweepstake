@@ -25,25 +25,30 @@ friend_names = [
 friends = friend_names.map { |name| Friend.create!(name: name) }
 
 # Create teams
-team_names = ["Italy", "Germany", "France", "Spain", "Portugal", "Netherlands",
-              "Belgium", "Denmark", "Sweden", "England", "Croatia", "Switzerland"]
+#team_names = ["Italy", "Germany", "France", "Spain", "Portugal", "Netherlands",
+ #             "Belgium", "Denmark", "Sweden", "England", "Croatia", "Switzerland"]
+
+team_names = ["Croatia", "Serbia", "South Korea", "United States", "Canada", "Germany", "Ghana", "Iran", "Brazil",
+   "Tunisia", "Netherlands", "Saudi Arabia", "Senegal", "Ecuador", "Japan", "Costa Rica", "Mexico", "Poland", "Qatar",
+    "Wales", "Argentina", "Cameroon",  "Italy", "Germany", "France", "Spain", "Portugal", "Netherlands",
+               "Belgium", "Denmark", "Sweden", "England", "Croatia", "Switzerland"]
 
 teams = team_names.map { |name| Team.create!(name: name) }
 
 # Define group details including friends, multipliers, and teams
 group_details = [
-  { name: "Group 1", friend: "Lewis", multiplier: 2.5, teams: ["Italy", "Germany"] },
-  { name: "Group 2", friend: "Claire", multiplier: 1.5, teams: ["France", "Spain"] },
-  { name: "Group 3", friend: "Craig", multiplier: 3.0, teams: ["Portugal", "Netherlands"] },
-  { name: "Group 4", friend: "Emma", multiplier: 2.0, teams: ["Belgium", "Denmark"] },
-  { name: "Group 5", friend: "Sam", multiplier: 1.8, teams: ["Sweden", "England"] },
-  { name: "Group 6", friend: "Ella", multiplier: 2.2, teams: ["Croatia", "Switzerland"] },
-  { name: "Group 7", friend: "Richard", multiplier: 2.7, teams: ["Italy", "Portugal"] },
-  { name: "Group 8", friend: "Nhien", multiplier: 1.9, teams: ["Germany", "France"] },
-  { name: "Group 9", friend: "Matt", multiplier: 2.4, teams: ["Spain", "Belgium"] },
-  { name: "Group 10", friend: "Jamie", multiplier: 2.1, teams: ["Netherlands", "Sweden"] },
-  { name: "Group 11", friend: "Ben", multiplier: 2.6, teams: ["England", "Croatia"] },
-  { name: "Group 12", friend: "Aimee", multiplier: 1.7, teams: ["Denmark", "Switzerland"] }
+  { name: "Group 1", friend: "Aimee", multiplier: 10, teams: ["Croatia", "Serbia", "South Korea", "United States"] },
+  { name: "Group 2", friend: "Ben", multiplier: 10, teams: ["Canada", "Germany", "Ghana", "Iran"] },
+  { name: "Group 3", friend: "Claire", multiplier: 7, teams: ["Brazil", "Tunisia"] },
+  { name: "Group 4", friend: "Craig", multiplier: 9, teams: ["Netherlands", "Saudi Arabia", "Senegal"] },
+  { name: "Group 5", friend: "Ella", multiplier: 9, teams: ["Ecuador", "Japan", "Portugal"] },
+  { name: "Group 6", friend: "Emma", multiplier: 9, teams: ["Costa Rica", "Mexico", "Switzerland", "Uruguay"] },
+  { name: "Group 7", friend: "Lewis", multiplier: 9, teams: ["Morocco", "Poland", "Spain"] },
+  { name: "Group 8", friend: "Nhien", multiplier: 9, teams: ["Belgium", "Denmark", "Qatar"] },
+  { name: "Group 9", friend: "Richard", multiplier: 8, teams: ["France", "Wales"] },
+  { name: "Group 10", friend: "Sam", multiplier: 7, teams: ["Argentina", "Cameroon"] },
+  { name: "Group 11", friend: "Matt", multiplier: 8, teams: ["England", "Australia"] },
+  #{ name: "Group 12", friend: "Aimee", multiplier: 1.7, teams: ["Denmark", "Switzerland"] }
 ]
 
 # Create groups and assign details

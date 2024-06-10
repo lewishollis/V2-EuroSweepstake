@@ -1,7 +1,8 @@
 # app/controllers/matches_controller.rb
 class MatchesController < ApplicationController
   def index
-    url = URI("https://web-cdn.api.bbci.co.uk/wc-poll-data/container/sport-data-scores-fixtures?selectedEndDate=2021-07-11&selectedStartDate=2021-06-14&todayDate=2024-06-05&urn=urn%3Abbc%3Asportsdata%3Afootball%3Atournament%3Aeuropean-championship&useSdApi=false")
+    #url = URI("https://web-cdn.api.bbci.co.uk/wc-poll-data/container/sport-data-scores-fixtures?selectedEndDate=2021-07-11&selectedStartDate=2021-06-14&todayDate=2024-06-05&urn=urn%3Abbc%3Asportsdata%3Afootball%3Atournament%3Aeuropean-championship&useSdApi=false")
+    url = URI("https://web-cdn.api.bbci.co.uk/wc-poll-data/container/sport-data-scores-fixtures?selectedEndDate=2022-12-18&selectedStartDate=2022-11-20&todayDate=2024-06-10&urn=urn%3Abbc%3Asportsdata%3Afootball%3Atournament%3Aworld-cup&useSdApi=false")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
 
@@ -54,16 +55,16 @@ class MatchesController < ApplicationController
     puts "Assigning points for match: #{match.inspect}"
 
     if match.winner == 'home'
-      match.home_points = 3
+      match.home_points = 1
       match.away_points = 0
       puts "Home team wins. Home points: #{match.home_points}, Away points: #{match.away_points}"
     elsif match.winner == 'away'
       match.home_points = 0
-      match.away_points = 3
+      match.away_points = 1
       puts "Away team wins. Home points: #{match.home_points}, Away points: #{match.away_points}"
     else
-      match.home_points = 1
-      match.away_points = 1
+      match.home_points = 0
+      match.away_points = 0
       puts "Draw. Home points: #{match.home_points}, Away points: #{match.away_points}"
     end
 

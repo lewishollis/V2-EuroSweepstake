@@ -1,25 +1,23 @@
-<!-- app/views/groups/index.html.erb -->
+<!-- app/views/groups/show.html.erb -->
+<h1><%= @group.name %></h1>
+<p>Friend: <%= @group.friend.name %></p>
+<p>Multiplier: <%= @group.multiplier %></p>
+<p>Score: <%= @group.score %></p>
 
-<h1>List of Groups</h1>
-
+<h2>Teams</h2>
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Multiplier</th>
-      <th>Score</th>
-      <th>Actions</th>
+      <th>Team Name</th>
     </tr>
   </thead>
   <tbody>
-    <% @groups.each do |group| %>
+    <% @teams.each do |team| %>
       <tr>
-        <td><%= group.name %></td>
-        <td><%= group.multiplier %></td>
-        <td><%= group.score %></td>
-        <td>
-        </td>
+        <td><%= team.name %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'Back to Groups', groups_path %>
