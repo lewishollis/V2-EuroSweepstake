@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_07_155437) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_10_212844) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,8 +70,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_07_155437) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "stage"
+    t.string "match_id"
     t.index ["away_team_id"], name: "index_matches_on_away_team_id"
     t.index ["home_team_id"], name: "index_matches_on_home_team_id"
+    t.index ["match_id"], name: "index_matches_on_match_id"
   end
 
   create_table "sets", force: :cascade do |t|

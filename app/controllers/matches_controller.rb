@@ -1,7 +1,7 @@
-# app/controllers/matches_controller.rb
+require 'net/http'
+
 class MatchesController < ApplicationController
   def index
-    #url = URI("https://web-cdn.api.bbci.co.uk/wc-poll-data/container/sport-data-scores-fixtures?selectedEndDate=2021-07-11&selectedStartDate=2021-06-14&todayDate=2024-06-05&urn=urn%3Abbc%3Asportsdata%3Afootball%3Atournament%3Aeuropean-championship&useSdApi=false")
     url = URI("https://web-cdn.api.bbci.co.uk/wc-poll-data/container/sport-data-scores-fixtures?selectedEndDate=2022-12-18&selectedStartDate=2022-11-20&todayDate=2024-06-10&urn=urn%3Abbc%3Asportsdata%3Afootball%3Atournament%3Aworld-cup&useSdApi=false")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
@@ -21,10 +21,13 @@ class MatchesController < ApplicationController
             home_team = Team.find_or_create_by(name: event['home']['fullName'])
             away_team = Team.find_or_create_by(name: event['away']['fullName'])
 
-            match = Match.find_or_initialize_by(
+            # Modify to include match_id
+            match = Match.find_or_initialize_by(match_id: event['id'])
+            match.assign_attributes(
               home_team: home_team,
               away_team: away_team,
-              start_time: event['date']['iso']
+              start_time: event['date']['iso'],
+              match_id: event['id'] # Assigning the match ID here
             )
 
             if match.new_record?
@@ -68,7 +71,6 @@ class MatchesController < ApplicationController
       puts "Draw. Home points: #{match.home_points}, Away points: #{match.away_points}"
     end
 
-    # Update team points
     update_team_points(match.home_team, match.home_points)
     update_team_points(match.away_team, match.away_points)
   end
