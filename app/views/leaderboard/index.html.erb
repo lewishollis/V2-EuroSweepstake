@@ -10,22 +10,22 @@
 <body>
   <div class="leaderboard-container">
     <h1>Leaderboard</h1>
-    <table class="leaderboard-table">
-      <thead>
-        <tr>
-          <th>Friend</th>
-          <th>Total Points</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @leaderboard.each do |entry| %>
-          <tr>
-            <td><%= entry[:name] %></td>
-            <td><%= round_to_half(entry[:total_points]) %></td>
-          </tr>
+    <% @groups.each do |group| %>
+      <div class="group-card">
+        <h2>Group <%= group.name %></h2>
+        <p>Friend: <%= group.friend&.name || "No Friend Assigned" %></p>
+        <% total_points = group.total_points %>
+        <% group.teams.each do |team| %>
+          <p>
+            <%= team.name %> - <%= team.points %>
+            <%= form_with url: update_team_progress_leaderboard_path(team), method: :patch, local: true do %>
+              <%= check_box_tag :progressed, team.id, team.progressed?, onchange: 'this.form.submit();' %>
+            <% end %>
+          </p>
         <% end %>
-      </tbody>
-    </table>
+        <p>Total Points: <%= total_points %></p>
+      </div>
+    <% end %>
   </div>
 </body>
 </html>

@@ -76,7 +76,9 @@ class MatchesController < ApplicationController
   end
 
   def update_team_points(team, points)
+    puts "Updating team points: Team: #{team.name}, Current Points: #{team.points}, Points to Add: #{points}"
     team.points = (team.points || 0) + points
     team.save!
+    puts "New team points: Team: #{team.name}, Updated Points: #{team.points}"
   end
 end

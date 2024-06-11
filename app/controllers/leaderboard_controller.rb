@@ -1,10 +1,11 @@
 class LeaderboardController < ApplicationController
   def index
-    @leaderboard = Group.includes(:friend).map do |group|
-      {
-        name: group.friend&.name || "No Friend Assigned",
-        total_points: group.total_points
-      }
-    end.sort_by { |entry| -entry[:total_points] }
+    @groups = Group.includes(:teams, :friend).all
+  end
+
+  def update_team_progress
+    team = Team.find(params[:id])
+    team.update(progressed: !team.progressed?)
+    redirect_to leaderboard_index_path
   end
 end
