@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :matches, only: [:index]  # Assuming you only need the index action for now
 
   # Define routes for LeaderboardController
-  resources :leaderboard, only: [:index] do
+  resources :leaderboard, only: [:index, :show]  do
     patch :update_team_progress, on: :member
   end  # Assuming you have an index action in LeaderboardController
 

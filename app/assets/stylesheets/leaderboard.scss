@@ -1,0 +1,52 @@
+/* Basic styling */
+.leaderboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.leaderboard-card {
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 15px;
+}
+
+.leaderboard-header {
+  text-align: center;
+}
+
+.team-list {
+  margin-top: 15px;
+}
+
+.team {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+/* Styling for the friend's name */
+.leaderboard-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+/* Styling for the group name and multiplier */
+.leaderboard-header p {
+  margin: 0;
+  color: #666;
+}
+
+/* Styling for individual team names */
+.team p:first-child {
+  font-weight: bold;
+}
+
+/* Styling for total points */
+.total-points {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+}
