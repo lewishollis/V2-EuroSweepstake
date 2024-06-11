@@ -9,8 +9,11 @@
 <body>
   <div class="leaderboard-show-container">
     <h1>Leaderboard Show</h1>
-    <!-- Button to Leaderboard Index Page -->
-    <a href="<%= leaderboard_index_path %>" class="button">Go to Leaderboard</a>
+    <!-- Buttons to Leaderboard Index Page and Matches Page -->
+    <div class="button-container">
+      <a href="<%= leaderboard_index_path %>" class="button">Go to Leaderboard</a>
+      <a href="<%= matches_path %>" class="button">Go to Matches</a>
+    </div>
     <table>
       <thead>
         <tr>
@@ -24,7 +27,7 @@
             <tr>
               <td><%= group.friend.name %></td>
              <% total_points = group.total_points %>
-              <td><%= total_points %></td> <!-- Corrected here -->
+              <td><%= total_points %></td>
             </tr>
           <% end %>
         <% end %>
