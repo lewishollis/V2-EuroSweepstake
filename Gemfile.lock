@@ -203,6 +203,7 @@ GEM
       io-console (~> 0.5)
     rexml (3.3.0)
       strscan
+    rubygems-update (3.3.22)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -278,6 +279,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.3)
+  rubygems-update (= 3.3.22)
   sassc-rails
   selenium-webdriver
   sprockets-rails
