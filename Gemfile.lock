@@ -279,7 +279,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.3)
-  rubygems-update (= 3.3.22)
+  rubygems-update (= 3.3.2)
   sassc-rails
   selenium-webdriver
   sprockets-rails
@@ -289,7 +289,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.3.22
+   ruby 3.3.2
 
 BUNDLED WITH
    2.5.3
