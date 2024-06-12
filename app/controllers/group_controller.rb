@@ -1,4 +1,4 @@
-class Group < ApplicationRecord
+class GroupController < ApplicationRecord
   has_and_belongs_to_many :teams
 
   def calculate_score
