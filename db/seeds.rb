@@ -1,20 +1,5 @@
 # db/seeds.rb
 
-# Delete all records to ensure a clean slate
-puts "Deleting all records..."
-
-# Delete all associations first to avoid foreign key constraints issues
-Group.all.each { |group| group.teams.clear }
-
-# Then delete the records themselves
-Friend.destroy_all
-Team.destroy_all
-Group.destroy_all
-FriendsGroup.destroy_all
-FriendGroupTeam.destroy_all
-Match.destroy_all
-
-puts "All records deleted."
 
 # Create friends
 friend_names = [

@@ -2,11 +2,14 @@
 .leaderboard-container {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column; /* Adjusted for mobile */
   justify-content: space-around;
+  align-items: center; /* Center align items */
 }
 
 .leaderboard-card {
-  width: 300px;
+  width: 100%; /* Take full width on mobile */
+  max-width: 300px; /* Limit maximum width for larger screens */
   border: 1px solid #ccc;
   border-radius: 8px;
   margin: 10px;
@@ -30,7 +33,7 @@
 /* Styling for the friend's name */
 .leaderboard-header h2 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* Adjust font size as needed */
 }
 
 /* Styling for the group name and multiplier */

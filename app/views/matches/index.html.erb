@@ -17,33 +17,30 @@
     <% if @error_message %>
       <p><%= @error_message %></p>
     <% else %>
-      <table>
-        <thead>
-          <tr>
-            <th>Home Team</th>
-            <th>Away Team</th>
-            <th>Home Score</th>
-            <th>Away Score</th>
-            <th>Start Time</th>
-            <th>Status</th>
-            <th>Winner</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @matches.each do |match| %>
-            <tr>
-              <td><%= match.home_team.name %></td>
-              <td><%= match.away_team.name %></td>
-              <td><%= match.home_score %></td>
-              <td><%= match.away_score %></td>
-              <td><%= match.start_time %></td>
-              <td><%= match.status %></td>
-              <td><%= match.winner %></td>
-              <td><%= match.accessible_event_summary %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="matches-list">
+        <% @matches.each do |match| %>
+          <div class="match">
+            <div class="team-scores">
+              <div class="team-score">
+                <h3><%= match.home_team.name %></h3>
+                <p><%= match.home_score %></p>
+              </div>
+              <div class="team-score">
+                <h3><%= match.away_team.name %></h3>
+                <p><%= match.away_score %></p>
+              </div>
+            </div>
+            <div class="event-summary">
+              <p><%= match.accessible_event_summary %></p>
+            </div>
+            <div class="match-details">
+              <p><strong>Start Time:</strong> <%= match.start_time %></p>
+              <p><strong>Status:</strong> <%= match.status %></p>
+              <p><strong>Winner:</strong> <%= match.winner %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </body>
