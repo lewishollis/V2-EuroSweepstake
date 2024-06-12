@@ -203,7 +203,7 @@ GEM
       io-console (~> 0.5)
     rexml (3.3.0)
       strscan
-    rubygems-update (3.3.22)
+    rubygems-update (3.1.2)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -289,7 +289,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.1.2
+   ruby 3.1.2p20
 
 BUNDLED WITH
    2.5.3
