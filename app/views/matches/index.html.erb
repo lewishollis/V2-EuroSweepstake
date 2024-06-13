@@ -22,26 +22,34 @@
           <div class="team-scores">
             <div class="team-score">
               <%= image_tag(match.home_friend_profile_picture_url, alt: match.home_friend_name) if match.home_friend_profile_picture_url.present? %>
-              <h1><%= match.home_friend_name %></h1>
-              <h3><%= match.home_team.name %></h3>
-              <p><%= match.home_score %></p>
+              <div class ="friend-name">
+                <%= match.home_friend_name %>
+              </div>
+              <div class="team-name">
+                <%= match.home_team.name %>
+              </div>
+              <%= match.home_score %>
             </div>
             <div class="winner">
-              <p><strong>Winner:</strong>
+              <strong>Winner:</strong>
                 <% if match.winner == "home" %>
                   <%= match.home_team.name %>
                 <% elsif match.winner == "away" %>
                   <%= match.away_team.name %>
                 <% else %>
-                  Draw
+                  TBC
                 <% end %>
-              </p>
+
             </div>
             <div class="team-score">
               <%= image_tag(match.away_friend_profile_picture_url, alt: match.away_friend_name) if match.away_friend_profile_picture_url.present? %>
-              <h1><%= match.away_friend_name %></h1>
-              <h3><%= match.away_team.name %></h3>
-              <p><%= match.away_score %></p>
+              <div class="friend-name">
+              <%= match.away_friend_name %>
+              </div>
+                <div class="team-name">
+                  <%= match.away_team.name %>
+                </div>
+              <%= match.away_score %>
             </div>
           </div>
           <div class="event-summary">
