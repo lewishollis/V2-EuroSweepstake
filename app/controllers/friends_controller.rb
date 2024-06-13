@@ -11,5 +11,5 @@ class FriendsController < ApplicationController
       # Handle case where friend with given ID doesn't exist
       nil
     end
-
+  end
 end
