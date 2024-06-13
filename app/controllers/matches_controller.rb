@@ -2,7 +2,10 @@ require 'net/http'
 
 class MatchesController < ApplicationController
   def index
-    url = URI("https://web-cdn.api.bbci.co.uk/wc-poll-data/container/sport-data-scores-fixtures?selectedEndDate=2022-12-18&selectedStartDate=2022-11-20&todayDate=2024-06-10&urn=urn%3Abbc%3Asportsdata%3Afootball%3Atournament%3Aworld-cup&useSdApi=false")
+    today_date = Time.now.strftime("%Y-%m-%d")
+    url = URI("https://web-cdn.api.bbci.co.uk/wc-poll-data/container/sport-data-scores-fixtures?selectedEndDate=2024-06-30&selectedStartDate=2024-06-14&todayDate=#{today_date}&urn=urn%3Abbc%3Asportsdata%3Afootball%3Atournament%3Aeuropean-championship&useSdApi=false")
+
+    #url = URI("https://web-cdn.api.bbci.co.uk/wc-poll-data/container/sport-data-scores-fixtures?selectedEndDate=2022-12-18&selectedStartDate=2022-11-20&todayDate=2024-06-10&urn=urn%3Abbc%3Asportsdata%3Afootball%3Atournament%3Aworld-cup&useSdApi=false")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
 
@@ -20,20 +23,29 @@ class MatchesController < ApplicationController
           secondary_group['events'].each do |event|
             home_team = Team.find_or_create_by(name: event['home']['fullName'])
             away_team = Team.find_or_create_by(name: event['away']['fullName'])
-            home_friend = home_team.groups.first&.friend&.name || 'No owner'
-            away_friend = away_team.groups.first&.friend&.name || 'No owner'
 
-            # Modify to include match_id
+            # Fetching home and away friend names and profile picture URLs
+            home_friend = home_team.groups.first&.friend
+            away_friend = away_team.groups.first&.friend
+
+            home_friend_profile_picture_url = home_friend.profile_picture_url if home_friend.present?
+            away_friend_profile_picture_url = away_friend.profile_picture_url if away_friend.present?
+
+            home_friend_name = home_friend&.name || 'No owner'
+            away_friend_name = away_friend&.name || 'No owner'
+
+            # Modify match initialization to include profile picture URLs
             match = Match.find_or_initialize_by(match_id: event['id'])
             match.assign_attributes(
               home_team: home_team,
               away_team: away_team,
               start_time: event['date']['iso'],
-              match_id: event['id'], # Assigning the match ID here
-              home_friend_name: home_friend,
-              away_friend_name: away_friend
+              match_id: event['id'],
+              home_friend_name: home_friend_name,
+              away_friend_name: away_friend_name,
+              home_friend_profile_picture_url: home_friend_profile_picture_url,
+              away_friend_profile_picture_url: away_friend_profile_picture_url
             )
-
             if match.new_record?
               match.assign_attributes(
                 home_score: event['home']['score'].to_i,

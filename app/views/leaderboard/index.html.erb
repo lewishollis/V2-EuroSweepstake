@@ -12,6 +12,9 @@
         <div class="leaderboard-header">
           <h2>Group <%= group.name %></h2>
           <p>Friend: <%= group.friend&.name || "No Friend Assigned" %></p>
+          <% if group.friend&.profile_picture_url.present? %>
+      <%= image_tag(group.friend.profile_picture_url, alt: group.friend.name) %>
+      <%end%>
           <p>Multiplier: <%= group.multiplier %>
         </div>
         <div class="team-list">
