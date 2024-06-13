@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matches</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -22,10 +21,23 @@
           <div class="match">
             <div class="team-scores">
               <div class="team-score">
+                <h1><%= match.home_friend_name %></h1>
                 <h3><%= match.home_team.name %></h3>
                 <p><%= match.home_score %></p>
               </div>
+              <div class="winner">
+                <p><strong>Winner:</strong>
+                  <% if match.winner == "home" %>
+                    <%= match.home_team.name %>
+                  <% elsif match.winner == "away" %>
+                    <%= match.away_team.name %>
+                  <% else %>
+                    Draw
+                  <% end %>
+                </p>
+              </div>
               <div class="team-score">
+                <h1><%= match.away_friend_name %></h1>
                 <h3><%= match.away_team.name %></h3>
                 <p><%= match.away_score %></p>
               </div>
@@ -34,9 +46,7 @@
               <p><%= match.accessible_event_summary %></p>
             </div>
             <div class="match-details">
-              <p><strong>Start Time:</strong> <%= match.start_time %></p>
-              <p><strong>Status:</strong> <%= match.status %></p>
-              <p><strong>Winner:</strong> <%= match.winner %></p>
+              <p><strong>Fixture Date - </strong> <%= match.start_time.strftime("%B %d, %Y %H:%M") %></p>
             </div>
           </div>
         <% end %>

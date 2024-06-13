@@ -20,6 +20,8 @@ class MatchesController < ApplicationController
           secondary_group['events'].each do |event|
             home_team = Team.find_or_create_by(name: event['home']['fullName'])
             away_team = Team.find_or_create_by(name: event['away']['fullName'])
+            home_friend = home_team.groups.first&.friend&.name || 'No owner'
+            away_friend = away_team.groups.first&.friend&.name || 'No owner'
 
             # Modify to include match_id
             match = Match.find_or_initialize_by(match_id: event['id'])
@@ -27,7 +29,9 @@ class MatchesController < ApplicationController
               home_team: home_team,
               away_team: away_team,
               start_time: event['date']['iso'],
-              match_id: event['id'] # Assigning the match ID here
+              match_id: event['id'], # Assigning the match ID here
+              home_friend_name: home_friend,
+              away_friend_name: away_friend
             )
 
             if match.new_record?

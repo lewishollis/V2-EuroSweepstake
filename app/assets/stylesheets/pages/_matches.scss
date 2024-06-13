@@ -1,20 +1,11 @@
-// Define variables
-$primary-color: #3498db;
-
 // Base styles
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  margin: 0;
-  padding: 0;
+.matches-container {
+  background-color: $background-color;
 }
 
-.matches-container {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 10px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.match {
+  background-color: $background-color;
+  color: $text-color;
 }
 
 .navigation {
@@ -46,19 +37,32 @@ h1 {
 
 .matches-list {
   .match {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    height: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
     margin-bottom: 20px;
     padding: 10px;
-    background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
 
     .team-scores {
       display: flex;
       justify-content: space-between;
+      align-items: center; // Ensures alignment in the center
       margin-bottom: 10px;
 
       .team-score {
         text-align: center;
+        width: 30%; // Adjust width as needed
+      }
+
+      .winner {
+        text-align: center;
+        width: 30%; // Adjust width as needed
       }
     }
 
@@ -89,8 +93,9 @@ h1 {
     .team-scores {
       flex-direction: column;
 
-      .team-score {
+      .team-score, .winner {
         margin-bottom: 5px;
+        width: 100%; // Adjust width for smaller screens
       }
     }
   }

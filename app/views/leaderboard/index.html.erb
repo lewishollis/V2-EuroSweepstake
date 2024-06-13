@@ -1,11 +1,4 @@
-<!-- app/views/leaderboard/index.html.erb -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leaderboard</title>
-  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="leaderboard-container">
@@ -19,6 +12,7 @@
         <div class="leaderboard-header">
           <h2>Group <%= group.name %></h2>
           <p>Friend: <%= group.friend&.name || "No Friend Assigned" %></p>
+          <p>Multiplier: <%= group.multiplier %>
         </div>
         <div class="team-list">
           <% total_points = group.total_points %>
