@@ -34,6 +34,8 @@ class MatchesController < ApplicationController
             home_friend_name = home_friend&.name || 'No owner'
             away_friend_name = away_friend&.name || 'No owner'
 
+            stage = event['stage'] || { 'name' => 'Unknown Stage' }
+
             # Modify match initialization to include profile picture URLs
             match = Match.find_or_initialize_by(match_id: event['id'])
             match.assign_attributes(
@@ -41,6 +43,7 @@ class MatchesController < ApplicationController
               away_team: away_team,
               start_time: event['date']['iso'],
               match_id: event['id'],
+              stage: stage['name'],
               home_friend_name: home_friend_name,
               away_friend_name: away_friend_name,
               home_friend_profile_picture_url: home_friend_profile_picture_url,
