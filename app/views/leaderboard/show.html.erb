@@ -1,25 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard Show</title>
+  <link rel="stylesheet" href="leaderboard_show.css">
+</head>
 <body>
-  <div class="leaderboard-show-container">
+ <div class="leaderboard-show-container">
     <h1>Leaderboard Show</h1>
     <!-- Buttons to Leaderboard Index Page and Matches Page -->
     <div class="button-container">
-      <a href="<%= leaderboard_index_path %>" class="button">Go to Groups</a>
+      <a href="<%= leaderboard_index_path %>" class="button">Go to groups</a>
       <a href="<%= matches_path %>" class="button">Go to Matches</a>
     </div>
     <table>
       <thead>
         <tr>
-          <th>Friend's Name</th>
-          <th>Total Points</th>
+          <th></th>
+          <th>Friend</th>
+          <th>Teams</th>
+          <th>Points</th>
         </tr>
       </thead>
       <tbody>
-        <% @leaderboard.each do |group| %>
+        <% @leaderboard.each_with_index do |group, index| %>
           <% if group.friend %>
             <tr>
-              <td><%= group.friend.name %></td>
-             <% total_points = group.total_points %>
-              <td><%= total_points %></td>
+              <td><%= index + 1 %></td>
+              <td>
+                <%= image_tag(group.friend.profile_picture_url, alt: group.friend.name, class: 'profile-picture') if group.friend.profile_picture_url.present? %>
+                <%= group.friend.name %>
+              </td>
+              <td>
+                <% group.teams.each do |team| %>
+                  <%= image_tag(team.flag_url, alt: team.name, class: 'flag') if team.flag_url.present? %>
+
+                <% end %>
+              </td>
+              <td><%= group.total_points %></td>
             </tr>
           <% end %>
         <% end %>

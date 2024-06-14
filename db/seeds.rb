@@ -1,6 +1,3 @@
-# db/seeds.rb
-
-# Create friends
 friend_data = [
   { name: "Lewis", profile_picture_url: ActionController::Base.helpers.asset_path('images-ben/Lewis.jpeg') },
   { name: "Claire", profile_picture_url: ActionController::Base.helpers.asset_path('images-ben/Claire.jpeg') },
@@ -17,34 +14,49 @@ friend_data = [
 
 friends = friend_data.map { |data| Friend.create!(data) }
 
-# Create teams
-team_names = [
-  "Germany", "Scotland", "Hungary", "Switzerland",
-  "Spain", "Croatia", "Italy", "Albania",
-  "Slovenia", "Denmark", "Serbia", "England",
-  "Poland", "Netherlands", "Austria", "France",
-  "Belgium", "Slovakia", "Romania", "Ukraine",
-  "Turkey", "Georgia", "Portugal", "Czech Republic"
+team_data = [
+  { name: "Germany", flag_url: "https://flagcdn.com/de.svg" },
+  { name: "Scotland", flag_url: "https://flagcdn.com/gb-sct.svg" },
+  { name: "Hungary", flag_url: "https://flagcdn.com/hu.svg" },
+  { name: "Switzerland", flag_url: "https://flagcdn.com/ch.svg" },
+  { name: "Spain", flag_url: "https://flagcdn.com/es.svg" },
+  { name: "Croatia", flag_url: "https://flagcdn.com/hr.svg" },
+  { name: "Italy", flag_url: "https://flagcdn.com/it.svg" },
+  { name: "Albania", flag_url: "https://flagcdn.com/al.svg" },
+  { name: "Slovenia", flag_url: "https://flagcdn.com/si.svg" },
+  { name: "Denmark", flag_url: "https://flagcdn.com/dk.svg" },
+  { name: "Serbia", flag_url: "https://flagcdn.com/rs.svg" },
+  { name: "England", flag_url: "https://flagcdn.com/gb-eng.svg" },
+  { name: "Poland", flag_url: "https://flagcdn.com/pl.svg" },
+  { name: "Netherlands", flag_url: "https://flagcdn.com/nl.svg" },
+  { name: "Austria", flag_url: "https://flagcdn.com/at.svg" },
+  { name: "France", flag_url: "https://flagcdn.com/fr.svg" },
+  { name: "Belgium", flag_url: "https://flagcdn.com/be.svg" },
+  { name: "Slovakia", flag_url: "https://flagcdn.com/sk.svg" },
+  { name: "Romania", flag_url: "https://flagcdn.com/ro.svg" },
+  { name: "Ukraine", flag_url: "https://flagcdn.com/ua.svg" },
+  { name: "Turkey", flag_url: "https://flagcdn.com/tr.svg" },
+  { name: "Georgia", flag_url: "https://flagcdn.com/ge.svg" },
+  { name: "Portugal", flag_url: "https://flagcdn.com/pt.svg" },
+  { name: "Czech Republic", flag_url: "https://flagcdn.com/cz.svg" }
 ]
 
-teams = team_names.map { |name| Team.create!(name: name) }
+teams = team_data.map { |data| Team.create!(data) }
 
-# Define group details including friends, multipliers, and teams
 group_details = [
-  { name: "Group 1", friend: "Aimee", multiplier: 10, teams: ["Spain", "Turkey", "France", "Belgium"] },
-  { name: "Group 2", friend: "Ben", multiplier: 10, teams: ["Germany", "Albania", "Ukraine", "Scotland"] },
-  { name: "Group 3", friend: "Claire", multiplier: 7, teams: ["Hungary", "Czech Republic"] },
-  { name: "Group 4", friend: "Craig", multiplier: 9, teams: ["Switzerland", "Netherlands", "Austria"] },
-  { name: "Group 5", friend: "Ella", multiplier: 9, teams: ["Croatia", "Serbia", "Denmark"] },
-  { name: "Group 6", friend: "Emma", multiplier: 10, teams: ["Portugal", "Romania", "Poland", "Italy"] },
-  { name: "Group 7", friend: "Lewis", multiplier: 9, teams: ["Slovakia", "Slovenia", "Georgia"] },
-  { name: "Group 8", friend: "Nhien", multiplier: 9, teams: ["England", "Turkey", "Spain"] },
-  { name: "Group 9", friend: "Richard", multiplier: 8, teams: ["France", "Wales"] },
-  { name: "Group 10", friend: "Sam", multiplier: 7, teams: ["Ukraine", "Belgium"] },
-  { name: "Group 11", friend: "Matt", multiplier: 8, teams: ["Portugal", "Denmark"] },
+  { name: "Group 1", friend: "Aimee", multiplier: 3, teams: ["England", "Albania"] },
+  { name: "Group 2", friend: "Ben", multiplier: 3, teams: ["France", "Poland"] },
+  { name: "Group 3", friend: "Claire", multiplier: 3, teams: ["Germany", "Romania"] },
+  { name: "Group 4", friend: "Craig", multiplier: 4, teams: ["Portugal", "Slovenia"] },
+  { name: "Group 5", friend: "Ella", multiplier: 4, teams: ["Spain", "Switzerland"] },
+  { name: "Group 6", friend: "Emma", multiplier: 4, teams: ["Italy", "Ukraine"] },
+  { name: "Group 7", friend: "Lewis", multiplier: 4, teams: ["Netherlands", "Czech Republic"] },
+  { name: "Group 8", friend: "Nhien", multiplier: 4, teams: ["Croatia", "Scotland", "Slovakia"] },
+  { name: "Group 9", friend: "Richard", multiplier: 5, teams: ["Belgium", "Turkey"] },
+  { name: "Group 10", friend: "Sam", multiplier: 5, teams: ["Austria", "Denmark", "Georgia"] },
+  { name: "Group 11", friend: "Matt", multiplier: 6, teams: ["Serbia", "Hungary"] },
 ]
 
-# Create groups and assign details
 group_details.each do |details|
   friend = friends.find { |f| f.name == details[:friend] }
   group = Group.create!(name: details[:name], multiplier: details[:multiplier], friend: friend)

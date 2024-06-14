@@ -1,32 +1,94 @@
-/* Basic styling */
+// groups
+
+// Basic styling for the leaderboard container
 .leaderboard-container {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: column; /* Adjusted for mobile */
-  justify-content: space-around;
-  align-items: center; /* Center align items */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    align-items: center;
+    flex-direction: column;
 }
 
-.leaderboard-card {
-  width: 100%; /* Take full width on mobile */
-  max-width: 300px; /* Limit maximum width for larger screens */
+// Styling for the leaderboard title
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+// Styling for the button to Leaderboard Index Page
+.button {
+  display: inline-block;
+  width: 150px;
+  margin: 0 10px 20px;
+  text-align: center;
+  padding: 10px;
+  background-color: $primary-color;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+// Styling for the leaderboard table
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+// Styling for table headers
+th {
+  padding: 10px;
+  background-color: #f0f0f0;
+  text-align: left;
+}
+
+// Styling for table data cells
+td {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+// Styling for alternating table rows
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+// Styling for the profile pictures
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+// Styling for the flags
+.flag {
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+// Styling for the group cards
+.group-card {
   border: 1px solid #ccc;
   border-radius: 8px;
-  margin: 10px;
+  margin: 10px 0;
   padding: 15px;
+  width: 50%;
+  background-color: #f9f9f9;
 }
-
-/* Adjusted CSS for profile picture */
-.leaderboard-header img {
-  max-width: 100px; /* Set maximum width */
-  max-height: 100px; /* Set maximum height */
-  border-radius: 50%; /* Ensure the image is round */
-  margin-top: 10px; /* Adjust margin as needed */
-}
-
 
 .leaderboard-header {
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .team-list {
@@ -36,29 +98,32 @@
 .team {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 5px;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-/* Styling for the friend's name */
-.leaderboard-header h2 {
+.progressed {
+  display: flex;
+  justify-content: end;
+
+}
+
+.team p {
   margin: 0;
-  font-size: 1.5rem; /* Adjust font size as needed */
 }
 
-/* Styling for the group name and multiplier */
-.leaderboard-header p {
-  margin: 0;
-  color: #666;
-}
-
-/* Styling for individual team names */
-.team p:first-child {
-  font-weight: bold;
-}
-
-/* Styling for total points */
 .total-points {
   text-align: center;
   margin-top: 15px;
   font-weight: bold;
+}
+
+// Styling for the checkboxes
+.progressed-checkbox {
+  margin-left: 10px;
+}
+
+.team-list h3 {
+  text-align: center;
+  margin-bottom: 10px;
 }

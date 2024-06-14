@@ -2,7 +2,7 @@
 
 // Basic styling for the leaderboard container
 .leaderboard-show-container {
-  max-width: 800px;
+  max-width: 50%;
   margin: 0 auto;
   padding: 20px;
 }
@@ -24,6 +24,12 @@ h1 {
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
+}
+
+.team img {
+  width: 32px; /* Adjust the size as needed */
+  height: 32px; /* Adjust the size as needed */
+  margin-right: 10px; /* Space between the flag and the team name */
 }
 
 // Styling for the leaderboard table

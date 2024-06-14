@@ -1,4 +1,10 @@
-  <title>Leaderboard</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Groups</title>
+  <link rel="stylesheet" href="leaderboard_show.css">
 </head>
 <body>
   <div class="leaderboard-container">
@@ -6,24 +12,27 @@
       <a href="<%= matches_path %>" class="button">Go to Matches</a>
       <a href="<%= leaderboard_path(:show) %>" class="button">Go to Leaderboard</a>
     </div>
-    <h1>Leaderboard</h1>
+    <h1>Groups</h1>
     <% @groups.each do |group| %>
       <div class="leaderboard-card group-card">
         <div class="leaderboard-header">
           <h2><%= group.name %></h2>
-          <p>Friend: <%= group.friend&.name || "No Friend Assigned" %></p>
+          <h1> <%= group.friend&.name || "No Friend Assigned" %></h1>
           <% if group.friend&.profile_picture_url.present? %>
-      <%= image_tag(group.friend.profile_picture_url, alt: group.friend.name) %>
-      <%end%>
-          <p>Multiplier: <%= group.multiplier %>
+            <%= image_tag(group.friend.profile_picture_url, alt: group.friend.name, class: 'profile-picture') %>
+          <% end %>
+          <p>Multiplier: <%= group.multiplier %></p>
         </div>
         <div class="team-list">
+          <div class="progressed">
+          <p>Progressed?</p>
+          </div>
           <% total_points = group.total_points %>
           <% group.teams.each do |team| %>
             <div class="team">
               <p><%= team.name %> - <%= team.points %></p>
               <%= form_with url: update_team_progress_leaderboard_path(team), method: :patch, local: true do %>
-                <%= check_box_tag :progressed, team.id, team.progressed?, onchange: 'this.form.submit();' %>
+                <%= check_box_tag :progressed, team.id, team.progressed?, class: 'progressed-checkbox', onchange: 'this.form.submit();' %>
               <% end %>
             </div>
           <% end %>

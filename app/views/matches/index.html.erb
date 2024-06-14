@@ -22,33 +22,34 @@
           <div class="team-scores">
             <div class="team-score">
               <%= image_tag(match.home_friend_profile_picture_url, alt: match.home_friend_name) if match.home_friend_profile_picture_url.present? %>
-              <div class ="friend-name">
+              <div class="friend-name">
                 <%= match.home_friend_name %>
               </div>
               <div class="team-name">
+                <%#= image_tag(match.home_team.flag_url, alt: match.home_team.name, class: 'flag') if match.home_team.flag_url.present? %>
                 <%= match.home_team.name %>
               </div>
               <%= match.home_score %>
             </div>
             <div class="winner">
               <strong>Winner:</strong>
-                <% if match.winner == "home" %>
-                  <%= match.home_team.name %>
-                <% elsif match.winner == "away" %>
-                  <%= match.away_team.name %>
-                <% else %>
-                  TBC
-                <% end %>
-
+              <% if match.winner == "home" %>
+                <%= match.home_team.name %>
+              <% elsif match.winner == "away" %>
+                <%= match.away_team.name %>
+              <% else %>
+                TBC
+              <% end %>
             </div>
             <div class="team-score">
               <%= image_tag(match.away_friend_profile_picture_url, alt: match.away_friend_name) if match.away_friend_profile_picture_url.present? %>
               <div class="friend-name">
-              <%= match.away_friend_name %>
+                <%= match.away_friend_name %>
               </div>
-                <div class="team-name">
-                  <%= match.away_team.name %>
-                </div>
+              <div class="team-name">
+                <%#= image_tag(match.away_team.flag_url, alt: match.away_team.name, class: 'flag') if match.away_team.flag_url.present? %>
+                 <%= match.away_team.name %>
+              </div>
               <%= match.away_score %>
             </div>
           </div>
