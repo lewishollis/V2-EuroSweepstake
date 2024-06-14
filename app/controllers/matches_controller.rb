@@ -5,7 +5,6 @@ class MatchesController < ApplicationController
     today_date = Time.now.strftime("%Y-%m-%d")
     url = URI("https://web-cdn.api.bbci.co.uk/wc-poll-data/container/sport-data-scores-fixtures?selectedEndDate=2024-06-30&selectedStartDate=2024-06-14&todayDate=#{today_date}&urn=urn%3Abbc%3Asportsdata%3Afootball%3Atournament%3Aeuropean-championship&useSdApi=false")
 
-    #url = URI("https://web-cdn.api.bbci.co.uk/wc-poll-data/container/sport-data-scores-fixtures?selectedEndDate=2022-12-18&selectedStartDate=2022-11-20&todayDate=2024-06-10&urn=urn%3Abbc%3Asportsdata%3Afootball%3Atournament%3Aworld-cup&useSdApi=false")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
 
@@ -76,18 +75,45 @@ class MatchesController < ApplicationController
   def assign_points(match)
     puts "Assigning points for match: #{match.inspect}"
 
-    if match.winner == 'home'
-      match.home_points = 1
-      match.away_points = 0
-      puts "Home team wins. Home points: #{match.home_points}, Away points: #{match.away_points}"
-    elsif match.winner == 'away'
+    stage = match.stage
+
+    case stage
+    when 'Group Stage'
       match.home_points = 0
-      match.away_points = 1
-      puts "Away team wins. Home points: #{match.home_points}, Away points: #{match.away_points}"
+      match.away_points = 0
+      puts "Group Stage match. No points awarded."
+    when 'Last 16', 'Quarter Final', '3rd Place Final'
+      if match.winner == 'home'
+        match.home_points = 1
+        match.away_points = 0
+        puts "Home team wins #{stage}. Home points: #{match.home_points}, Away points: #{match.away_points}"
+      elsif match.winner == 'away'
+        match.home_points = 0
+        match.away_points = 1
+        puts "Away team wins #{stage}. Home points: #{match.home_points}, Away points: #{match.away_points}"
+      else
+        match.home_points = 0
+        match.away_points = 0
+        puts "Draw in #{stage}. Home points: #{match.home_points}, Away points: #{match.away_points}"
+      end
+    when 'Final'
+      if match.winner == 'home'
+        match.home_points = 2
+        match.away_points = 1
+        puts "Home team wins Final. Home points: #{match.home_points}, Away points: #{match.away_points}"
+      elsif match.winner == 'away'
+        match.home_points = 1
+        match.away_points = 2
+        puts "Away team wins Final. Home points: #{match.home_points}, Away points: #{match.away_points}"
+      else
+        match.home_points = 0
+        match.away_points = 0
+        puts "Draw in Final. Home points: #{match.home_points}, Away points: #{match.away_points}"
+      end
     else
       match.home_points = 0
       match.away_points = 0
-      puts "Draw. Home points: #{match.home_points}, Away points: #{match.away_points}"
+      puts "Unknown stage. No points awarded. Stage: #{stage}"
     end
 
     update_team_points(match.home_team, match.home_points)
