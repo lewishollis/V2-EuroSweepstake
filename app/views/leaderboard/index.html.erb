@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Groups</title>
-  <link rel="stylesheet" href="leaderboard_show.css">
-</head>
 <body>
-  <div class="leaderboard-container">
-    <div class="navigation">
-      <a href="<%= matches_path %>" class="button">Go to Matches</a>
-      <a href="<%= leaderboard_path(:show) %>" class="button">Go to Leaderboard</a>
-    </div>
+  <div class="leaderboard-show-container">
     <h1>Groups</h1>
     <% @groups.each do |group| %>
       <div class="leaderboard-card group-card">
@@ -25,7 +13,7 @@
         </div>
         <div class="team-list">
           <div class="progressed">
-          <p>Progressed?</p>
+            <p>Progressed?</p>
           </div>
           <% total_points = group.total_points %>
           <% group.teams.each do |team| %>
@@ -37,7 +25,7 @@
             </div>
           <% end %>
         </div>
-        <p class="total-points">Total Points: <%= total_points %></p>
+        <h1 class="total-points">Total Points: <%= total_points %></h1>
       </div>
     <% end %>
   </div>

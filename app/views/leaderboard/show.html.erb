@@ -1,49 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leaderboard Show</title>
-  <link rel="stylesheet" href="leaderboard_show.css">
-</head>
-<body>
- <div class="leaderboard-show-container">
-    <h1>Leaderboard Show</h1>
-    <!-- Buttons to Leaderboard Index Page and Matches Page -->
-    <div class="button-container">
-      <a href="<%= leaderboard_index_path %>" class="button">Go to groups</a>
-      <a href="<%= matches_path %>" class="button">Go to Matches</a>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>Friend</th>
-          <th>Teams</th>
-          <th>Points</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @leaderboard.each_with_index do |group, index| %>
-          <% if group.friend %>
-            <tr>
-              <td><%= index + 1 %></td>
-              <td>
-                <%= image_tag(group.friend.profile_picture_url, alt: group.friend.name, class: 'profile-picture') if group.friend.profile_picture_url.present? %>
-                <%= group.friend.name %>
-              </td>
-              <td>
+<div class="leaderboard-show-container">
+  <h1>Leaderboard</h1>
+  <table>
+    <thead>
+      <tr>
+        <!-- <th></th>
+        <th>Friend and Teams</th>
+        <th>Points</th> <!-->
+      </tr>
+    </thead>
+    <tbody>
+      <% @leaderboard.each_with_index do |group, index| %>
+        <% if group.friend %>
+          <tr>
+            <td><h1><%= index + 1 %></h1></td>
+            <td class="friend-info">
+              <%= image_tag(group.friend.profile_picture_url, alt: group.friend.name, class: 'profile-picture') if group.friend.profile_picture_url.present? %>
+              <h1><%= group.friend.name %></h1>
+              <div class="team-flags">
                 <% group.teams.each do |team| %>
                   <%= image_tag(team.flag_url, alt: team.name, class: 'flag') if team.flag_url.present? %>
-
                 <% end %>
-              </td>
-              <td><%= group.total_points %></td>
-            </tr>
-          <% end %>
+              </div>
+            </td>
+            <td><h1><%= group.total_points %></h1></td>
+          </tr>
         <% end %>
-      </tbody>
-    </table>
-  </div>
-</body>
-</html>
+      <% end %>
+    </tbody>
+  </table>
+</div>

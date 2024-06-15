@@ -1,10 +1,13 @@
-// leaderboard_show.scss
+//GROUPS
 
 // Basic styling for the leaderboard container
 .leaderboard-show-container {
-  max-width: 50%;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 // Styling for the leaderboard title
@@ -13,7 +16,79 @@ h1 {
   margin-bottom: 20px;
 }
 
-// Styling for the button to Leaderboard Index Page
+// Styling for the leaderboard cards
+.leaderboard-card.group-card {
+  width: 50%;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+// Styling for the leaderboard header
+.leaderboard-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+// Styling for the header text
+.leaderboard-header h2, .leaderboard-header h1 {
+  margin: 0;
+  text-align: center;
+  color: black;
+}
+
+// Styling for the profile picture
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+// Styling for the team list
+.team-list {
+  width: 100%;
+  margin-top: 10px;
+}
+
+// Styling for the progressed section
+.progressed {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+// Styling for individual teams
+.team {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+}
+
+// Styling for team names
+.team p {
+  margin: 0;
+  text-align: left;
+  flex-grow: 1;
+}
+
+// Styling for the checkbox
+.progressed-checkbox {
+  margin-left: 10px;
+}
+
+// Styling for total points
+.total-points {
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: right;
+  color: red;
+}
+
+// Button styling
 .button {
   display: block;
   width: 150px;
@@ -26,6 +101,7 @@ h1 {
   border-radius: 5px;
 }
 
+// Styling for team images
 .team img {
   width: 32px; /* Adjust the size as needed */
   height: 32px; /* Adjust the size as needed */
