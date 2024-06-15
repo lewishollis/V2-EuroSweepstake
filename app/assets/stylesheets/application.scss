@@ -3,13 +3,15 @@
 @import "config/colours";
 @import "variables";
 @import "components/navbar";
-
+@import "components/footer";
 
 // Your CSS partials
 @import "pages/leaderboard_show";
 @import 'components/buttons';
 @import 'pages/leaderboard';
 @import 'pages/matches';
+@import 'pages/faqs';
+
 
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');

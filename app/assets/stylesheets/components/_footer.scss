@@ -1,0 +1,16 @@
+/* Example styling for the footer */
+footer {
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
+}
+
+footer p {
+  display: inline; /* Ensure paragraphs are inline */
+}
+
+footer a {
+  color: #333; /* Link color */
+  text-decoration: none; /* Remove underline */
+  margin-left: 5px; /* Adjust spacing between "Made with" and the link */
+}

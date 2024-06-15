@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'faqs/index'
 
   # Define routes for MatchesController
   resources :matches, only: [:index]  # Assuming you only need the index action for now
@@ -14,4 +15,5 @@ Rails.application.routes.draw do
   resources :teams, only: [:index]
   # Set root route
   root 'matches#index'  # Assuming you want the matches index as the root route
+    get 'faqs', to: 'faqs#index'
 end
