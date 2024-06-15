@@ -17,4 +17,12 @@
 body {
   font-family: "DM Sans", sans-serif;
   background-color: $background-color;
+  margin: 0; /* Remove default margin */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+#content {
+  width: 100%;
+  max-width: 100%; /* Ensure content doesn't exceed viewport width */
+  padding: 20px; /* Adjust padding as needed */
 }
