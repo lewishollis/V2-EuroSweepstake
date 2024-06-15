@@ -3,9 +3,9 @@
   <table>
     <thead>
       <tr>
-        <!-- <th></th>
+        <th>Rank</th>
         <th>Friend and Teams</th>
-        <th>Points</th> <!-->
+        <th>Points</th>
       </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
                 <% end %>
               </div>
             </td>
-            <td><h1><%= group.total_points.to_i %></h1></td>
+            <td><h1 class="spin"><%= group.total_points.to_i %></h1></td>
           </tr>
         <% end %>
       <% end %>
