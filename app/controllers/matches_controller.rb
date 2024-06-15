@@ -62,6 +62,7 @@ class MatchesController < ApplicationController
             end
 
             @matches << match
+
           end
         end
       end
