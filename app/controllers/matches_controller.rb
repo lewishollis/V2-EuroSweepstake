@@ -35,7 +35,14 @@ class MatchesController < ApplicationController
 
             stage = event['stage'] || { 'name' => 'Unknown Stage' }
 
-            # Modify match initialization to include profile picture URLs
+            # Determine if match is live
+            if event['status'] == 'MidEvent'
+              winner = nil  # Set winner to nil if match is in progress
+            else
+              winner = event['winner']  # Set winner if match is finished
+            end
+
+            # Modify match initialization to include status and live scores
             match = Match.find_or_initialize_by(match_id: event['id'])
             match.assign_attributes(
               home_team: home_team,
@@ -46,23 +53,20 @@ class MatchesController < ApplicationController
               home_friend_name: home_friend_name,
               away_friend_name: away_friend_name,
               home_friend_profile_picture_url: home_friend_profile_picture_url,
-              away_friend_profile_picture_url: away_friend_profile_picture_url
+              away_friend_profile_picture_url: away_friend_profile_picture_url,
+              home_score: event['home']['score'].to_i,
+              away_score: event['away']['score'].to_i,
+              status: event['status'],
+              winner: winner,  # Assign winner based on match status
+              accessible_event_summary: event['accessibleEventSummary']
             )
-            if match.new_record?
-              match.assign_attributes(
-                home_score: event['home']['score'].to_i,
-                away_score: event['away']['score'].to_i,
-                status: event['status'],
-                winner: event['winner'],
-                accessible_event_summary: event['accessibleEventSummary']
-              )
 
+            if match.new_record?
               assign_points(match)
               match.save!
             end
 
             @matches << match
-
           end
         end
       end
