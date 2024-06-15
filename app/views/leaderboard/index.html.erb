@@ -15,10 +15,10 @@
           <div class="progressed">
             <p>Progressed?</p>
           </div>
-          <% total_points = group.total_points %>
+          <% total_points = group.total_points.to_i %>
           <% group.teams.each do |team| %>
             <div class="team">
-              <p><%= team.name %> - <%= team.points %></p>
+              <p><%= team.name %> - <%= team.points.to_i %></p>
               <%= form_with url: update_team_progress_leaderboard_path(team), method: :patch, local: true do %>
                 <%= check_box_tag :progressed, team.id, team.progressed?, class: 'progressed-checkbox', onchange: 'this.form.submit();' %>
               <% end %>
