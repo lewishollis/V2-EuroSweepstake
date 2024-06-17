@@ -1,5 +1,4 @@
 <h1>Matches</h1>
-
 <% if @error_message %>
   <p><%= @error_message %></p>
 <% else %>
@@ -20,12 +19,16 @@
           <div class="winner">
             <% if match.status != 'MidEvent' %>
               <strong>Winner:</strong>
-              <% if match.winner == "home" %>
+              <% if match.status == 'PreEvent' %>
+                TBC
+              <% elsif match.winner == "draw" %>
+                Draw
+              <% elsif match.winner == "home" %>
                 <%= match.home_team.name %>
               <% elsif match.winner == "away" %>
                 <%= match.away_team.name %>
               <% else %>
-                Draw
+                TBC
               <% end %>
             <% end %>
           </div>
