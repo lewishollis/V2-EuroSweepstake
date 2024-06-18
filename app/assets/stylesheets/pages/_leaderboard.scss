@@ -74,7 +74,7 @@ tbody tr:nth-child(even) {
 
 /* Animation for spinning numbers */
 .spin {
-  animation: spin 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+  animation: spin 6s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 @keyframes spin {
