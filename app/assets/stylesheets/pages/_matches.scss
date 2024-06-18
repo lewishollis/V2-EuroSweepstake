@@ -101,6 +101,7 @@ h1 {
 
 .filters {
   display: flex;
+  width: 100%;
   justify-content: center;
   margin-bottom: 20px;
 }
@@ -110,11 +111,16 @@ h1 {
   color: $background-color;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 12px 20px; /* Increase padding for easier tapping */
   margin-right: 10px;
   cursor: pointer;
   transition: background 0.3s;
+  text-align: center; /* Center align text */
+
+
+  font-size: 12px; /* Adjust font size for readability */
 }
+
 
 .filters .filter-label:hover {
   background: darken($primary-color, 10%);
