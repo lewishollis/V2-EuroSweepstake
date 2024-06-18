@@ -5,11 +5,7 @@
   padding: 20px;
 }
 
-/* Styling for the leaderboard title */
-.leaderboard-show-container h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
+
 
 /* Styling for the table */
 table {
@@ -44,8 +40,8 @@ tbody tr:nth-child(even) {
 
 /* Styling for the profile pictures */
 .profile-picture {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   margin-right: 10px;
   vertical-align: middle;

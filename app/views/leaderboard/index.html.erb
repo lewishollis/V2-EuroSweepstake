@@ -4,12 +4,12 @@
     <% @groups.each do |group| %>
       <div class="leaderboard-card group-card">
         <div class="leaderboard-header">
-          <h2><%= group.name %></h2>
+          <p><%= group.name %></p>
           <h1> <%= group.friend&.name || "No Friend Assigned" %></h1>
           <% if group.friend&.profile_picture_url.present? %>
             <%= image_tag(group.friend.profile_picture_url, alt: group.friend.name, class: 'profile-picture') %>
           <% end %>
-          <p>Multiplier: <%= group.multiplier %></p>
+          <h2>Multiplier: <%= group.multiplier.to_i %></h2>
         </div>
         <div class="team-list">
           <div class="progressed">
@@ -18,7 +18,7 @@
           <% total_points = group.total_points.to_i %>
           <% group.teams.each do |team| %>
             <div class="team">
-              <p><%= team.name %> - <%= team.points.to_i %></p>
+              <h1><%= team.name %> - <%= team.points.to_i %></h1>
               <%= form_with url: update_team_progress_leaderboard_path(team), method: :patch, local: true do %>
                 <%= check_box_tag :progressed, team.id, team.progressed?, class: 'progressed-checkbox', onchange: 'this.form.submit();' %>
               <% end %>
