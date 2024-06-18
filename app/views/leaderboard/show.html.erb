@@ -1,13 +1,7 @@
 <div class="leaderboard-show-container">
   <h1>Leaderboard</h1>
   <table>
-    <thead>
-      <tr>
-        <th>Rank</th>
-        <th>Friend and Teams</th>
-        <th>Points</th>
-      </tr>
-    </thead>
+
     <tbody>
       <% @leaderboard.each_with_index do |group, index| %>
         <% if group.friend %>
