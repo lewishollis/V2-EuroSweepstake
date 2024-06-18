@@ -17,15 +17,13 @@
 }
 
 .match img {
-  max-width: 15%; /* Adjust image size as needed */
+  max-width: 50%; /* Adjust image size as needed */
   border-radius: 50%; /* Ensure the image is round */
-  margin-bottom: 10px; /* Adjust margin as needed */
 }
 
 .friend-name {
   text-align: center;
-  margin-bottom: 10px;
-  font-size: 1.5rem; /* Adjust font size as needed */
+  font-size: 20px; /* Adjust font size as needed */
   color: $primary-color;
 }
 
@@ -44,13 +42,13 @@
 .winner {
   color: rgb(255, 97, 97);
   font-size: 35px;
-  padding: 15px;
+  padding: 5px;
   border: 2px solid $primary-color;
 }
 
 .event-summary {
-  margin-bottom: 10px;
   text-align: center;
+  margin-top: -30px;
 }
 
 .match-details {
@@ -77,19 +75,20 @@ h1 {
 
     .team-name {
       font-family: 'Kavoon', cursive;
-      font-size: 50px;
+      font-size: 25px;
       color: black;
     }
 
     .team-scores {
       flex-direction: column;
       font-family: 'Kavoon', cursive;
-      font-size: 24px; /* Adjust font size as needed */
+      font-size: 26px; /* Adjust font size as needed */
       color: black;
 
       .team-score, .winner {
+        font-size: 20px;
         margin-bottom: 5px;
-        width: 100%;
+        width: 90%;
       }
     }
 
@@ -111,7 +110,7 @@ h1 {
 
   .team-scores {
     .team-score, .winner {
-      width: 100%; /* Adjust width for smaller screens */
+      width: 90%; /* Adjust width for smaller screens */
     }
   }
 
@@ -122,14 +121,15 @@ h1 {
 
 @media (max-width: 480px) {
   .match {
-    width: 100%;
+    width: 80%;
     margin: 10px auto; /* Adjust margin for centering */
     padding: 10px; /* Adjust padding as needed */
+    margin-bottom: 30px;
   }
 
   .team-scores {
     .team-score, .winner {
-      width: 100%; /* Adjust width for smaller screens */
+      width: 90%; /* Adjust width for smaller screens */
     }
   }
 
