@@ -1,6 +1,6 @@
 <!-- app/views/matches/index.html.erb -->
 <h1>Matches</h1>
-
+<button class="refresh-button" onclick="refreshPage()">Refresh Matches</button>
 <%= form_with url: matches_path, method: :get, local: true, id: 'filter-form' do %>
   <div class="filters">
     <%= hidden_field_tag 'filter[PostEvent]', '0', id: 'filter_PostEvent' %>
@@ -84,5 +84,9 @@
     document.getElementById('filter_MidEvent').value = (filterType === 'MidEvent') ? '1' : '0';
     document.getElementById('filter_PreEvent').value = (filterType === 'PreEvent') ? '1' : '0';
     document.getElementById('filter-form').submit();
+  }
+    function refreshPage() {
+    location.reload(); // Reload the current page
+
   }
 </script>

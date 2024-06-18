@@ -99,6 +99,21 @@ h1 {
   }
 }
 
+.refresh-button {
+  background-color: #aba000; /* Green background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: 12px; /* Adjust font size for readability */
+  margin-bottom: 10px; /* Adjust margin as needed */
+}
+
+.refresh-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
 .filters {
   display: flex;
   width: 100%;
