@@ -50,6 +50,9 @@
               <% else %>
                 TBC
               <% end %>
+              <% elsif match.status == 'MidEvent' %>
+            <!-- Display event summary for 'MidEvent' matches -->
+            <p><%= match.accessible_event_summary %></p>
             <% end %>
           </div>
           <div class="team-score">
