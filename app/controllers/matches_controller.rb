@@ -1,7 +1,9 @@
+# app/controllers/matches_controller.rb
 require 'net/http'
 
 class MatchesController < ApplicationController
   def index
+    @filter_params = filter_params
     today_date = Time.now.strftime("%Y-%m-%d")
     url = URI("https://web-cdn.api.bbci.co.uk/wc-poll-data/container/sport-data-scores-fixtures?selectedEndDate=2024-06-30&selectedStartDate=2024-06-14&todayDate=#{today_date}&urn=urn%3Abbc%3Asportsdata%3Afootball%3Atournament%3Aeuropean-championship&useSdApi=false")
 
@@ -70,12 +72,24 @@ class MatchesController < ApplicationController
           end
         end
       end
+
+      if @filter_params.present?
+        @matches.select! do |match|
+          (@filter_params['PostEvent'] == '1' && match.status == 'PostEvent') ||
+          (@filter_params['MidEvent'] == '1' && match.status == 'MidEvent') ||
+          (@filter_params['PreEvent'] == '1' && match.status == 'PreEvent')
+        end
+      end
     else
       @error_message = "Failed to fetch match data: #{response.code} - #{response.message}"
     end
   end
 
   private
+
+  def filter_params
+    params.fetch(:filter, {}).permit(:PostEvent, :MidEvent, :PreEvent).to_h
+  end
 
   def assign_points(match)
     puts "Assigning points for match: #{match.inspect}"

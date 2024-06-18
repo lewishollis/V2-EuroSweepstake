@@ -1,3 +1,24 @@
+<!-- app/views/matches/index.html.erb -->
+<h1>Matches</h1>
+
+<%= form_with url: matches_path, method: :get, local: true, id: 'filter-form' do %>
+  <div class="filters">
+    <%= hidden_field_tag 'filter[PostEvent]', '0', id: 'filter_PostEvent' %>
+    <%= hidden_field_tag 'filter[MidEvent]', '0', id: 'filter_MidEvent' %>
+    <%= hidden_field_tag 'filter[PreEvent]', '0', id: 'filter_PreEvent' %>
+
+    <label class="filter-label <%= 'active' if @filter_params['PostEvent'] == '1' %>" onclick="applyFilter('PostEvent')">
+      Past Games
+    </label>
+    <label class="filter-label <%= 'active' if @filter_params['MidEvent'] == '1' %>" onclick="applyFilter('MidEvent')">
+      In Play
+    </label>
+    <label class="filter-label <%= 'active' if @filter_params['PreEvent'] == '1' %>" onclick="applyFilter('PreEvent')">
+      Upcoming
+    </label>
+  </div>
+<% end %>
+
 <% if @error_message %>
   <p><%= @error_message %></p>
 <% else %>
@@ -53,3 +74,12 @@
     <% end %>
   </div>
 <% end %>
+
+<script>
+  function applyFilter(filterType) {
+    document.getElementById('filter_PostEvent').value = (filterType === 'PostEvent') ? '1' : '0';
+    document.getElementById('filter_MidEvent').value = (filterType === 'MidEvent') ? '1' : '0';
+    document.getElementById('filter_PreEvent').value = (filterType === 'PreEvent') ? '1' : '0';
+    document.getElementById('filter-form').submit();
+  }
+</script>
