@@ -44,17 +44,17 @@ team_data = [
 teams = team_data.map { |data| Team.create!(data) }
 
 group_details = [
-  { name: "Group 1", friend: "Aimee", multiplier: 3, teams: ["England", "Albania"] },
-  { name: "Group 2", friend: "Ben", multiplier: 3, teams: ["France", "Poland"] },
-  { name: "Group 3", friend: "Claire", multiplier: 3, teams: ["Germany", "Romania"] },
-  { name: "Group 4", friend: "Craig", multiplier: 4, teams: ["Portugal", "Slovenia"] },
-  { name: "Group 5", friend: "Ella", multiplier: 4, teams: ["Spain", "Switzerland"] },
-  { name: "Group 6", friend: "Emma", multiplier: 4, teams: ["Italy", "Ukraine"] },
-  { name: "Group 7", friend: "Lewis", multiplier: 4, teams: ["Netherlands", "Czech Republic"] },
-  { name: "Group 8", friend: "Nhien", multiplier: 4, teams: ["Croatia", "Scotland", "Slovakia"] },
-  { name: "Group 9", friend: "Richard", multiplier: 5, teams: ["Belgium", "Turkey"] },
-  { name: "Group 10", friend: "Sam", multiplier: 5, teams: ["Austria", "Denmark", "Georgia"] },
-  { name: "Group 11", friend: "Matt", multiplier: 6, teams: ["Serbia", "Hungary"] },
+  { name: "Group 1", friend: "Claire", multiplier: 3, teams: ["England", "Albania"] },
+  { name: "Group 2", friend: "Richard", multiplier: 3, teams: ["France", "Poland"] },
+  { name: "Group 3", friend: "Sam", multiplier: 3, teams: ["Germany", "Romania"] },
+  { name: "Group 4", friend: "Matt", multiplier: 4, teams: ["Portugal", "Slovenia"] },
+  { name: "Group 5", friend: "Ben", multiplier: 4, teams: ["Spain", "Switzerland"] },
+  { name: "Group 6", friend: "Craig", multiplier: 4, teams: ["Italy", "Ukraine"] },
+  { name: "Group 7", friend: "Nhien", multiplier: 4, teams: ["Netherlands", "Czech Republic"] },
+  { name: "Group 8", friend: "Lewis", multiplier: 4, teams: ["Croatia", "Scotland", "Slovakia"] },
+  { name: "Group 9", friend: "Ella", multiplier: 5, teams: ["Belgium", "Turkey"] },
+  { name: "Group 10", friend: "Aimee", multiplier: 5, teams: ["Austria", "Denmark", "Georgia"] },
+  { name: "Group 11", friend: "Emma", multiplier: 6, teams: ["Serbia", "Hungary"] },
 ]
 
 group_details.each do |details|
