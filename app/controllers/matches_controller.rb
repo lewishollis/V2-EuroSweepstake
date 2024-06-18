@@ -80,6 +80,11 @@ class MatchesController < ApplicationController
           (@filter_params['PreEvent'] == '1' && match.status == 'PreEvent')
         end
       end
+
+      @matches.sort_by! { |match| match.start_time } if @filter_params['PostEvent'] == '1'
+
+      # Reverse the array to display most recent matches first
+      @matches.reverse! if @filter_params['PostEvent'] == '1'
     else
       @error_message = "Failed to fetch match data: #{response.code} - #{response.message}"
     end
