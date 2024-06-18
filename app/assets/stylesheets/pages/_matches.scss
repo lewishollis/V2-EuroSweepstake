@@ -1,7 +1,7 @@
+/* app/assets/stylesheets/matches.css.scss */
 .matches-container {
   background-color: $background-color;
 }
-
 
 .match {
   background-color: $background-color;
@@ -59,7 +59,6 @@
   }
 }
 
-
 h1 {
   text-align: center;
   color: $primary-color;
@@ -98,6 +97,31 @@ h1 {
       }
     }
   }
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filters .filter-label {
+  background: $primary-color;
+  color: $background-color;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.filters .filter-label:hover {
+  background: darken($primary-color, 10%);
+}
+
+.filters .filter-label.active {
+  background: darken($primary-color, 20%);
 }
 
 /* Media queries for responsiveness */
