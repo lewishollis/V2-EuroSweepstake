@@ -15,7 +15,7 @@
 
 // Styling for the leaderboard cards
 .leaderboard-card.group-card {
-  width: 50%;
+  width: 80%;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 5px;
@@ -82,7 +82,7 @@
   font-weight: bold;
   margin-top: 10px;
   text-align: right;
-  color: red;
+  color: $primary-color;
 }
 
 
