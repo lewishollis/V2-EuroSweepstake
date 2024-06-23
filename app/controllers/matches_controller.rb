@@ -1,6 +1,3 @@
-# app/controllers/matches_controller.rb
-require 'net/http'
-
 class MatchesController < ApplicationController
   def index
     @filter_params = filter_params
@@ -25,7 +22,6 @@ class MatchesController < ApplicationController
             home_team = Team.find_or_create_by(name: event['home']['fullName'])
             away_team = Team.find_or_create_by(name: event['away']['fullName'])
 
-            # Fetching home and away friend names and profile picture URLs
             home_friend = home_team.groups.first&.friend
             away_friend = away_team.groups.first&.friend
 
@@ -37,14 +33,12 @@ class MatchesController < ApplicationController
 
             stage = event['stage'] || { 'name' => 'Unknown Stage' }
 
-            # Determine if match is live
             if event['status'] == 'MidEvent'
-              winner = nil  # Set winner to nil if match is in progress
+              winner = nil
             else
-              winner = event['winner']  # Set winner if match is finished
+              winner = event['winner']
             end
 
-            # Modify match initialization to include status and live scores
             match = Match.find_or_initialize_by(match_id: event['id'])
             match.assign_attributes(
               home_team: home_team,
@@ -59,7 +53,7 @@ class MatchesController < ApplicationController
               home_score: event['home']['score'].to_i,
               away_score: event['away']['score'].to_i,
               status: event['status'],
-              winner: winner,  # Assign winner based on match status
+              winner: winner,
               accessible_event_summary: event['accessibleEventSummary']
             )
 
@@ -73,6 +67,12 @@ class MatchesController < ApplicationController
         end
       end
 
+      # Call assign_points for each match after fetching from API and initializing/updating
+      @matches.each do |match|
+        assign_points(match)
+        match.save!  # Save each match after assigning points
+      end
+
       if @filter_params.present?
         @matches.select! do |match|
           (@filter_params['PostEvent'] == '1' && match.status == 'PostEvent') ||
@@ -82,12 +82,15 @@ class MatchesController < ApplicationController
       end
 
       @matches.sort_by! { |match| match.start_time } if @filter_params['PostEvent'] == '1'
-
-      # Reverse the array to display most recent matches first
       @matches.reverse! if @filter_params['PostEvent'] == '1'
     else
       @error_message = "Failed to fetch match data: #{response.code} - #{response.message}"
     end
+  end
+
+  def show
+    @matches = Match.all.includes(:home_team, :away_team)
+    @friends = Friend.includes(teams: [:home_matches, :away_matches])
   end
 
   private
@@ -110,33 +113,40 @@ class MatchesController < ApplicationController
       if match.winner == 'home'
         match.home_points = 1
         match.away_points = 0
+        match.result = 'W'
         puts "Home team wins #{stage}. Home points: #{match.home_points}, Away points: #{match.away_points}"
       elsif match.winner == 'away'
         match.home_points = 0
         match.away_points = 1
+        match.result = 'L'
         puts "Away team wins #{stage}. Home points: #{match.home_points}, Away points: #{match.away_points}"
       else
         match.home_points = 0
         match.away_points = 0
+        match.result = 'D'
         puts "Draw in #{stage}. Home points: #{match.home_points}, Away points: #{match.away_points}"
       end
     when 'Final'
       if match.winner == 'home'
         match.home_points = 2
         match.away_points = 1
+        match.result = 'W'
         puts "Home team wins Final. Home points: #{match.home_points}, Away points: #{match.away_points}"
       elsif match.winner == 'away'
         match.home_points = 1
         match.away_points = 2
+        match.result = 'L'
         puts "Away team wins Final. Home points: #{match.home_points}, Away points: #{match.away_points}"
       else
         match.home_points = 0
         match.away_points = 0
+        match.result = 'D'
         puts "Draw in Final. Home points: #{match.home_points}, Away points: #{match.away_points}"
       end
     else
       match.home_points = 0
       match.away_points = 0
+      match.result = 'TBC'
       puts "Unknown stage. No points awarded. Stage: #{stage}"
     end
 

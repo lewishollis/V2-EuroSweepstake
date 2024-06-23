@@ -12,4 +12,9 @@ class FriendsController < ApplicationController
       nil
     end
   end
+
+  def show
+    @friend = Friend.find(params[:id])
+    @teams = @friend.teams.includes(:home_matches, :away_matches)
+  end
 end

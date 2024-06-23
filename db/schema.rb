@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_14_184913) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_23_194848) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -75,9 +75,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_14_184913) do
     t.string "match_id"
     t.string "home_friend_profile_picture_url"
     t.string "away_friend_profile_picture_url"
+    t.bigint "team_id"
+    t.string "result"
     t.index ["away_team_id"], name: "index_matches_on_away_team_id"
     t.index ["home_team_id"], name: "index_matches_on_home_team_id"
     t.index ["match_id"], name: "index_matches_on_match_id"
+    t.index ["team_id"], name: "index_matches_on_team_id"
   end
 
   create_table "sets", force: :cascade do |t|
@@ -101,6 +104,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_14_184913) do
   add_foreign_key "friends", "groups"
   add_foreign_key "friends_groups", "friends"
   add_foreign_key "groups", "friends"
+  add_foreign_key "matches", "teams"
   add_foreign_key "matches", "teams", column: "away_team_id"
   add_foreign_key "matches", "teams", column: "home_team_id"
   add_foreign_key "teams", "friends", column: "friends_id"
